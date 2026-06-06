@@ -1,0 +1,86 @@
+/* ── Google Fonts ── */
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap");
+
+@import "tailwindcss";
+
+/* ── Theme ── */
+@theme {
+  --color-bg: #0a0a0a;
+  --color-surface: #111111;
+  --color-surface-2: #191919;
+  --color-border: rgba(201, 168, 76, 0.18);
+  --color-border-strong: rgba(201, 168, 76, 0.4);
+  --color-cream: #f0ece4;
+  --color-cream-2: rgba(240, 236, 228, 0.6);
+  --color-cream-3: rgba(240, 236, 228, 0.3);
+  --color-gold: #c9a84c;
+  --color-gold-dim: rgba(201, 168, 76, 0.5);
+
+  --font-serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-mono: "DM Mono", "Courier New", monospace;
+}
+
+/* ── Base ── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-cream);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-bg);
+}
+
+/* ── Scroll-reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1),
+              transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Cursor blink ── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+.cursor-blink {
+  animation: blink 1s step-end infinite;
+}
+
+/* ── Gold line sweep ── */
+@keyframes sweep {
+  0%   { left: -100%; }
+  50%  { left: 0; }
+  100% { left: 100%; }
+}
+.line-sweep::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  left: -100%;
+  background: var(--color-gold);
+  animation: sweep 2.8s ease infinite;
+}
+
+/* ── Card glow on hover ── */
+.card-glow {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+.card-glow:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 24px rgba(201, 168, 76, 0.08), 0 0 60px rgba(201, 168, 76, 0.04);
+  border-color: var(--color-border-strong) !important;
+}
